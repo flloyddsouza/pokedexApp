@@ -5,10 +5,17 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Pokedex from '../Screens/Pokedex/Pokedex';
 import Favourites from '../Screens/Favourites/Favourites';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { useQuery } from '@apollo/client';
+import { GET_POKEMON_LIST } from '../Constants/Queries';
+import Loading from '../Components/Loading';
 
 const Root: React.FC = () => {
 
   const Tab = createBottomTabNavigator();
+  const { data, loading, error } = useQuery(GET_POKEMON_LIST)
+
+  if (loading) return <Loading/>;
+  if (error) return <View  style={{...styles.rootContainer , backgroundColor: 'red'}}/>;
 
   return (
     <View style={styles.rootContainer}>
@@ -16,7 +23,7 @@ const Root: React.FC = () => {
         <Tab.Navigator
           initialRouteName="Pokedex"
           screenOptions={{
-            headerShown: false,  
+            headerShown: false,
             tabBarActiveTintColor: '#e91e63',
           }}
         >
@@ -42,7 +49,6 @@ const Root: React.FC = () => {
           />
         </Tab.Navigator>
       </NavigationContainer>
-
     </View>
   );
 };

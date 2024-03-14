@@ -1,5 +1,3 @@
-import { ImageSourcePropType } from "react-native"
-
 export type Type = {
   id: number
   name: string

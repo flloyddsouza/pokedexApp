@@ -1,9 +1,15 @@
 
 # Pokedex - App
 
+<p float="left">
+  <img src="https://github.com/flloyddsouza/pokedexApp/blob/master/src/Assets/screenshot1.png?raw=true" width="200"/>
+  <img src="https://github.com/flloyddsouza/pokedexApp/blob/master/src/Assets/screenshot2.png?raw=true" width="200"/> 
+  <img src="https://github.com/flloyddsouza/pokedexApp/blob/master/src/Assets/screenshot3.png?raw=true" width="200"/>
+</p>
+
 Pokedex App is build using React native.
 
-List all Generation - I Pokemon, by fetching data from a GraphQL : `https://beta.pokeapi.co/graphql/v1beta`
+List all Generation-i Pokemon, by fetching data from a GraphQL : `https://beta.pokeapi.co/graphql/v1beta`
 
 Has the ability to favourite a pokemon, state management is achieved by Async Storage Library
 

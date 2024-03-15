@@ -7,17 +7,17 @@
   <img src="https://github.com/flloyddsouza/pokedexApp/blob/master/src/Assets/screenshot3.png?raw=true" width="200"/>
 </p>
 
-Pokedex App is build using React native.
+- Pokedex App is build using React native.
 
-List all Generation-i Pokemon, by fetching data from a GraphQL : `https://beta.pokeapi.co/graphql/v1beta`
+- List all Generation-i Pokemon, by fetching data from a GraphQL : `https://beta.pokeapi.co/graphql/v1beta`
 
-Has the ability to favourite a pokemon, state management is achieved by Async Storage Library
+- Has the ability to favourite a pokemon, state management is achieved by Async Storage Library
 
-Uses Apollo Client for retreiving data
+- Uses Apollo Client for retreiving data
 
-Uses react-native-fast-image for Image caching.
+- Uses react-native-fast-image for Image caching.
 
-Uses react-native-linear-gradient for pokemon card UI.
+- Uses react-native-linear-gradient for pokemon card UI.
 
 
 ## Step 1: Install npm packages 

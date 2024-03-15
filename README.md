@@ -30,7 +30,7 @@ Additionally for iOS, we need to install pods,
 To install, navigate to ios directory, and run the command below:
 
 1. To navigate to the ios folder.
-```bash cd ios ``` 
+``` cd ios ``` 
 
 2. To install Bundler
 ```bundle install ``` 
@@ -59,7 +59,7 @@ Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _roo
 
 ```bash
 # using npm
-npm run android
+npx react-native run-android
 
 ```
 
@@ -67,7 +67,7 @@ npm run android
 
 ```bash
 # using npm
-npm run ios
+npm react-native run-ios
 
 ```
 

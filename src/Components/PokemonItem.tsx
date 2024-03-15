@@ -8,25 +8,37 @@ import TypeImage from '../Components/TypeImage';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';;
 import pokemonNumberPadding from '../Helpers/pokemonNumberPadding';
 import { addIdToList, checkIfIdExists, removeIdFromList } from '../Services/localStorage';
+import FastImage from 'react-native-fast-image';
 
 interface PokemonItemProps {
   pokemon: APIPokemon
 }
 
-const PokemonItem : React.FC<PokemonItemProps> = ({ pokemon }) => {
-  
+const PokemonItem: React.FC<PokemonItemProps> = ({ pokemon }) => {
+
   const typeColors = pokemonTypeColorCalculator(pokemon.types)
   const name = capitalizeFirstLetter(pokemon.name)
   const pokemonNumber = pokemonNumberPadding(pokemon.id)
-
   const [isFavourite, setIsFavourite] = useState(false);
+  const [imageURL, setImageURL] = useState('');
 
   useEffect(() => {
     const loadFavoriteStatus = async () => {
       const tempIsFavourite = await checkIfIdExists(pokemon.id)
       setIsFavourite(tempIsFavourite);
     };
+
+    const findImageURL = () => {
+      try {
+        const URL = pokemon.sprites[0].sprites.other['official-artwork'].front_default
+        setImageURL(URL ? URL : '')
+      } catch (e) {
+        setImageURL('')
+      }
+    }
+
     loadFavoriteStatus();
+    findImageURL();
   }, [pokemon.id]);
 
   const toggleFavourite = async () => {
@@ -38,7 +50,7 @@ const PokemonItem : React.FC<PokemonItemProps> = ({ pokemon }) => {
 
       //Update Local Storage
       previousState ? await removeIdFromList(pokemon.id) : await addIdToList(pokemon.id)
-      
+
     } catch (error) {
       console.error('Error toggling favorite status:', error);
     }
@@ -48,6 +60,15 @@ const PokemonItem : React.FC<PokemonItemProps> = ({ pokemon }) => {
     <View style={styles.pokemonItem}>
       <LinearGradient colors={typeColors} style={styles.linearGradient} start={{ x: 0.5, y: 0.5 }} end={{ x: 1, y: 0.5 }}>
         <View>
+          <FastImage
+            source={{
+              uri: imageURL,
+              priority: FastImage.priority.normal,
+            }}
+            style={styles.image}
+          />
+        </View>
+        <View style={styles.nameContainer}>
           <Text style={styles.pokemonName}>{name}</Text>
           <View style={styles.typeIconContainer}>
             {pokemon.types.map((type) => {
@@ -76,7 +97,6 @@ const styles = StyleSheet.create({
   linearGradient: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
     borderRadius: 12,
     paddingVertical: 8,
     paddingHorizontal: 10
@@ -99,6 +119,14 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontWeight: '700',
     opacity: 0.5
+  },
+  image: {
+    height: 70,
+    width: 70
+  },
+  nameContainer: {
+    flex: 1,
+    paddingHorizontal: 16
   }
 });
 

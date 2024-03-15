@@ -7,6 +7,7 @@ import PokemonItem from '../../Components/PokemonItem';
 import { APIPokemon } from '../../@types/pokemon';
 import { getIdList } from '../../Services/localStorage';
 import { EventRegister } from 'react-native-event-listeners';
+import NoFavourites from '../../Components/NoFavourites';
 
 
 const Favourites: React.FC = () => {
@@ -38,18 +39,16 @@ const Favourites: React.FC = () => {
     return pokemonData.filter(pokemon => ids.includes(pokemon.id));
   };
 
-  // if (data.length == 0) return <View  style={{flex: 1 , backgroundColor: 'red'}}/>;
-
   return (
     <View style={{...styles.container, paddingTop: insets.top}}>
       <View style={styles.headerContainer}>
         <Text style={styles.titleText}>Favourites</Text>
       </View>
-      <FlatList
+      {data.length == 0 ? (<NoFavourites/>) : (<FlatList
         data={data}
         renderItem={({ item }) => <PokemonItem pokemon={item}/>}
         keyExtractor={(pokemon) => pokemon.id.toString()}
-      />
+      />)}
     </View>
   )
 };

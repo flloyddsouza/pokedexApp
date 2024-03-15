@@ -14,8 +14,8 @@ const Root: React.FC = () => {
   const Tab = createBottomTabNavigator();
   const { data, loading, error } = useQuery(GET_POKEMON_LIST)
 
-  if (loading) return <Loading/>;
-  if (error) return <View  style={{...styles.rootContainer , backgroundColor: 'red'}}/>;
+  if (loading) return <Loading message='Hang on tight...'/>;
+  if (error) return <Loading message='Something Went Wrong :('/>;
 
   return (
     <View style={styles.rootContainer}>
@@ -24,7 +24,7 @@ const Root: React.FC = () => {
           initialRouteName="Pokedex"
           screenOptions={{
             headerShown: false,
-            tabBarActiveTintColor: '#e91e63',
+            tabBarActiveTintColor: '#df1718',
           }}
         >
           <Tab.Screen
@@ -42,8 +42,8 @@ const Root: React.FC = () => {
             component={Favourites}
             options={{
               tabBarLabel: 'Favourites',
-              tabBarIcon: ({ color, size }) => (
-                <MaterialIcons name="star" color={color} size={size} />
+              tabBarIcon: ({ color, size, focused }) => (
+                <MaterialIcons name={focused ? 'star': 'star-border'} color={color} size={size} />
               )
             }}
           />

@@ -1,7 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import LottieView from 'lottie-react-native';
 
-const Loading: React.FC = () => {
+interface LoadingProps {
+  message: string
+}
+
+const Loading: React.FC<LoadingProps> = ({ message}) => {
   return (
     <View style={styles.container}>
       <LottieView
@@ -10,7 +14,7 @@ const Loading: React.FC = () => {
         source={require("../Assets/Annimations/loading.json")}
         autoPlay>
       </LottieView>
-      <Text style={styles.helpText}>Hang on Tight...</Text>
+      <Text style={styles.helpText}>{message}</Text>
     </View>
   )
 }

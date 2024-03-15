@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 6,
     borderRadius: 8,
+    backgroundColor: '#EEEEEE'
   }
 });
 

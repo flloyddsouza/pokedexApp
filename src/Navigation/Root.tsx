@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -8,9 +8,11 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useQuery } from '@apollo/client';
 import { GET_POKEMON_LIST } from '../Constants/Queries';
 import Loading from '../Components/Loading';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 
 const Root: React.FC = () => {
 
+  changeNavigationBarColor('#FFFFFF', true, false)
   const Tab = createBottomTabNavigator();
   const { data, loading, error } = useQuery(GET_POKEMON_LIST)
 
@@ -25,6 +27,7 @@ const Root: React.FC = () => {
           screenOptions={{
             headerShown: false,
             tabBarActiveTintColor: '#df1718',
+            tabBarHideOnKeyboard: true
           }}
         >
           <Tab.Screen
